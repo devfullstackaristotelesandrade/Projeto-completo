@@ -1,0 +1,250 @@
+{
+  "info": {
+    "_postman_id": "aprender-mais-api",
+    "name": "Aprender+ API ",
+    "description": "Collection da API Aprender+ - ODS 4. O token retornado no login é salvo automaticamente na variável jwt.",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "http://localhost:3000"
+    },
+    {
+      "key": "jwt",
+      "value": ""
+    },
+    {
+      "key": "atividadeId",
+      "value": "1"
+    },
+    {
+      "key": "conteudoId",
+      "value": "1"
+    }
+  ],
+  "item": [
+    {
+      "name": "01 - Health",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": "{{baseUrl}}/api/health"
+      }
+    },
+    {
+      "name": "02 - Auth",
+      "item": [
+        {
+          "name": "Registrar aluno",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\"nome\": \"Aluno Postman\", \"email\": \"aluno.postman@aprendermais.com\", \"senha\": \"123456\"}"
+            },
+            "url": "{{baseUrl}}/api/auth/register"
+          }
+        },
+        {
+          "name": "Login aluno - salva JWT",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "pm.test('Login realizado', function () { pm.response.to.have.status(200); });",
+                  "const json = pm.response.json();",
+                  "if (json.token) pm.collectionVariables.set('jwt', json.token);"
+                ]
+              }
+            }
+          ],
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\"email\": \"aluno.postman@aprendermais.com\", \"senha\": \"123456\"}"
+            },
+            "url": "{{baseUrl}}/api/auth/login"
+          }
+        }
+      ]
+    },
+    {
+      "name": "03 - User",
+      "item": [
+        {
+          "name": "Meu usuário",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{jwt}}"
+              }
+            ],
+            "url": "{{baseUrl}}/api/users/me"
+          }
+        }
+      ]
+    },
+    {
+      "name": "04 - Conteúdos",
+      "item": [
+        {
+          "name": "Listar conteúdos",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{jwt}}"
+              }
+            ],
+            "url": "{{baseUrl}}/api/conteudos"
+          }
+        },
+        {
+          "name": "Buscar conteúdo",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{jwt}}"
+              }
+            ],
+            "url": "{{baseUrl}}/api/conteudos/{{conteudoId}}"
+          }
+        }
+      ]
+    },
+    {
+      "name": "05 - Atividades",
+      "item": [
+        {
+          "name": "Listar atividades",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{jwt}}"
+              }
+            ],
+            "url": "{{baseUrl}}/api/atividades"
+          }
+        },
+        {
+          "name": "Buscar atividade",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{jwt}}"
+              }
+            ],
+            "url": "{{baseUrl}}/api/atividades/{{atividadeId}}"
+          }
+        }
+      ]
+    },
+    {
+      "name": "06 - Progresso",
+      "item": [
+        {
+          "name": "Responder atividade",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{jwt}}"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\"atividadeId\": 1, \"resposta\": \"C\"}"
+            },
+            "url": "{{baseUrl}}/api/progresso"
+          }
+        },
+        {
+          "name": "Meu progresso",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{jwt}}"
+              }
+            ],
+            "url": "{{baseUrl}}/api/progresso/me"
+          }
+        }
+      ]
+    },
+    {
+      "name": "07 - Dashboard",
+      "item": [
+        {
+          "name": "Dashboard do aluno",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{jwt}}"
+              }
+            ],
+            "url": "{{baseUrl}}/api/dashboard"
+          }
+        }
+      ]
+    },
+    {
+      "name": "08 - Segurança",
+      "item": [
+        {
+          "name": "Sem token - deve retornar 401",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": "{{baseUrl}}/api/users/me"
+          }
+        },
+        {
+          "name": "Token inválido - deve retornar 401",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer token-invalido"
+              }
+            ],
+            "url": "{{baseUrl}}/api/users/me"
+          }
+        }
+      ]
+    }
+  ]
+}

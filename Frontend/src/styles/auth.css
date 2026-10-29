@@ -1,0 +1,464 @@
+* {
+  box-sizing: border-box;
+}
+
+.auth-page {
+  min-height: 100vh;
+  display: grid;
+  grid-template-columns: 1.05fr 0.95fr;
+  background: #f5f8fc;
+}
+
+/* =========================
+   LADO ESQUERDO
+========================= */
+
+.auth-hero1 {
+  position: relative;
+  width: 100%;
+  height: 100vh;
+   display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 70px;
+  overflow: hidden;
+  color: #ffffff;
+  background:
+    radial-gradient(
+      circle at 20% 20%,
+      rgba(255,255,255,0.14),
+      transparent 30%
+    ),
+    linear-gradient(
+      145deg,
+      #0756c9,
+      #0b74e5 50%,
+      #14a0e8
+    );
+}
+.auth-hero {
+  position: relative;
+  display: flex;
+  align-items: center;
+  padding: 70px;
+  overflow: hidden;
+  color: #ffffff;
+  background:
+    radial-gradient(
+      circle at 20% 20%,
+      rgba(255,255,255,0.14),
+      transparent 30%
+    ),
+    linear-gradient(
+      145deg,
+      #0756c9,
+      #0b74e5 50%,
+      #14a0e8
+    );
+}
+
+.auth-hero::before {
+  content: "";
+  position: absolute;
+  width: 380px;
+  height: 380px;
+  border-radius: 50%;
+  background: rgba(255,255,255,0.08);
+  right: -130px;
+  top: -120px;
+}
+
+.auth-hero::after {
+  content: "";
+  position: absolute;
+  width: 300px;
+  height: 300px;
+  border-radius: 50%;
+  background: rgba(255,255,255,0.06);
+  left: -130px;
+  bottom: -120px;
+}
+
+.auth-hero-content {
+  position: relative;
+  z-index: 1;
+  max-width: 580px;
+}
+
+.auth-logo {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 70px;
+  font-size: 25px;
+  font-weight: 800;
+}
+
+.auth-logo span {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 34px;
+  height: 34px;
+  border-radius: 10px;
+  background: #ffffff;
+  color: #0865d8;
+  font-size: 23px;
+}
+
+.auth-hero h1 {
+  margin: 0 0 22px;
+  font-size: clamp(38px, 4vw, 58px);
+  line-height: 1.08;
+  letter-spacing: -2px;
+}
+
+.auth-hero p {
+  max-width: 500px;
+  margin: 0;
+  font-size: 18px;
+  line-height: 1.7;
+  opacity: 0.9;
+}
+
+.auth-benefits {
+  display: grid;
+  gap: 15px;
+  margin-top: 42px;
+}
+
+.auth-benefits div {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  font-weight: 600;
+}
+
+.auth-benefits span {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 25px;
+  height: 25px;
+  border-radius: 50%;
+  background: rgba(255,255,255,0.18);
+}
+
+/* =========================
+   LADO DIREITO
+========================= */
+
+.auth-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 40px;
+}
+
+.auth-card {
+  width: 100%;
+  max-width: 470px;
+  padding: 42px;
+  border: 1px solid #e7edf5;
+  border-radius: 24px;
+  background: #ffffff;
+  box-shadow: 0 25px 70px rgba(25, 55, 90, 0.10);
+}
+
+.auth-mobile-logo {
+  display: none;
+}
+
+.auth-title {
+  margin-bottom: 28px;
+}
+
+.auth-title > span {
+  color: #0875df;
+  font-size: 12px;
+  font-weight: 800;
+  letter-spacing: 1.5px;
+}
+
+.auth-title h2 {
+  margin: 9px 0 8px;
+  color: #142033;
+  font-size: 30px;
+  line-height: 1.2;
+}
+
+.auth-title p {
+  margin: 0;
+  color: #718096;
+  font-size: 14px;
+  line-height: 1.6;
+}
+
+/* =========================
+   CAMPOS
+========================= */
+
+.auth-field {
+  margin-bottom: 19px;
+}
+
+.auth-field label {
+  display: block;
+  margin-bottom: 8px;
+  color: #263449;
+  font-size: 14px;
+  font-weight: 700;
+}
+
+.auth-input-wrapper {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  height: 52px;
+  padding: 0 15px;
+  border: 1px solid #dce4ef;
+  border-radius: 11px;
+  background: #fbfcfe;
+  transition: 0.2s ease;
+}
+
+.auth-input-wrapper:focus-within {
+  border-color: #0875df;
+  background: #ffffff;
+  box-shadow: 0 0 0 4px rgba(8,117,223,0.09);
+}
+
+.auth-input-wrapper > span {
+  width: 22px;
+  text-align: center;
+  font-size: 16px;
+  opacity: 0.7;
+}
+
+.auth-input-wrapper input {
+  width: 100%;
+  height: 100%;
+  border: 0;
+  outline: 0;
+  background: transparent;
+  color: #172033;
+  font-size: 15px;
+}
+
+.auth-input-wrapper input::placeholder {
+  color: #a0aabb;
+}
+
+/* =========================
+   BOTÃO
+========================= */
+
+.auth-submit {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  width: 100%;
+  height: 53px;
+  margin-top: 10px;
+  border: 0;
+  border-radius: 11px;
+  background: linear-gradient(
+    135deg,
+    #0868d8,
+    #0785e8
+  );
+  color: #ffffff;
+  font-size: 15px;
+  font-weight: 700;
+  cursor: pointer;
+  transition: 0.2s ease;
+}
+.auth-submit1 {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  width: 50%;
+  height: 53px;
+  margin-top: 30px;
+  border: 0;
+  border-radius: 11px;
+  background: linear-gradient(
+    135deg,
+    #5591d6,
+    #0785e8
+  );
+  color: #ffffff;
+  font-size: 20px;
+  font-weight: 700;
+  cursor: pointer;
+  transition: 0.2s ease;
+}
+
+.auth-submit:hover:not(:disabled) {
+  transform: translateY(-1px);
+  box-shadow: 0 10px 25px rgba(8,104,216,0.25);
+}
+
+.auth-submit:disabled {
+  opacity: 0.7;
+  cursor: not-allowed;
+}
+
+/* =========================
+   SPINNER
+========================= */
+
+.auth-spinner {
+  width: 18px;
+  height: 18px;
+  border: 2px solid rgba(255,255,255,0.4);
+  border-top-color: #ffffff;
+  border-radius: 50%;
+  animation: auth-spin 0.7s linear infinite;
+}
+
+@keyframes auth-spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+/* =========================
+   MENSAGENS
+========================= */
+
+.auth-error,
+.auth-success {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 13px 15px;
+  margin-bottom: 20px;
+  border-radius: 10px;
+  font-size: 13px;
+}
+
+.auth-error {
+  border: 1px solid #ffd4d4;
+  background: #fff4f4;
+  color: #b42318;
+}
+
+.auth-success {
+  border: 1px solid #c8efd8;
+  background: #effcf4;
+  color: #16794c;
+}
+
+.auth-error p,
+.auth-success p {
+  margin: 0;
+}
+
+/* =========================
+   DIVISOR
+========================= */
+
+.auth-divider {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  margin: 28px 0 20px;
+  color: #a0aaba;
+  font-size: 12px;
+}
+
+.auth-divider::before,
+.auth-divider::after {
+  content: "";
+  flex: 1;
+  height: 1px;
+  background: #e8edf3;
+}
+
+/* =========================
+   CADASTRO
+========================= */
+
+.auth-register {
+  margin: 0;
+  color: #718096;
+  text-align: center;
+  font-size: 14px;
+}
+
+.auth-register a {
+  margin-left: 5px;
+  color: #0875df;
+  font-weight: 700;
+  text-decoration: none;
+}
+
+.auth-register a:hover {
+  text-decoration: underline;
+}
+
+.auth-footer {
+  display: block;
+  margin-top: 30px;
+  color: #a0aaba;
+  text-align: center;
+  font-size: 11px;
+}
+
+/* =========================
+   RESPONSIVO
+========================= */
+
+@media (max-width: 1000px) {
+  .auth-page {
+    grid-template-columns: 1fr;
+  }
+
+  .auth-hero {
+    display: none;
+  }
+
+  .auth-container {
+    min-height: 100vh;
+    padding: 25px;
+  }
+
+  .auth-mobile-logo {
+    display: block;
+    margin-bottom: 30px;
+    text-align: center;
+  }
+
+  .auth-mobile-logo strong {
+    color: #172033;
+    font-size: 25px;
+  }
+
+  .auth-mobile-logo span {
+    color: #0875df;
+  }
+}
+
+@media (max-width: 520px) {
+  .auth-container {
+    padding: 15px;
+  }
+
+  .auth-card {
+    padding: 28px 20px;
+    border-radius: 18px;
+    box-shadow: none;
+  }
+
+  .auth-title h2 {
+    font-size: 26px;
+  }
+}
+
+.frase1  {
+  font-size: 18px;
+ 
+}
